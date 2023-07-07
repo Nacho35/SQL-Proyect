@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const db = require("./config/db");
+const routes = require("./routes/mainRoutes");
 
 const app = express();
 
@@ -16,6 +17,20 @@ app.get("/", (req, res) => {
    <li>POST <a href="">/productos/</a></li>
   </ul>
   `);
+});
+
+//** RUTA PREDETERMINADA */
+app.use("/productos", routes);
+
+//** FUNCION EN CASO DE QUE LA URL NO EXISTA */
+
+app.use(function (req, res, next) {
+	answer = {
+		error: true,
+		code: 404,
+		message: "URL No Encontrada",
+	};
+	res.status(404).send(answer);
 });
 
 app.listen(process.env.PORT, () => {

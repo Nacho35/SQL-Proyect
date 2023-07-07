@@ -1,77 +1,19 @@
-//** LAS PETICIONES */
+const express = require("express");
 
-//** OBTIENE TODOS LOS PRODUCTOS */
+const productsControllers = require("../controllers/products.Controllers");
 
-app.get("/productos/"),
-	(req, res) => {
-		try {
-			res.send("Se Trajeron Todos los Productos");
-			res.status(201).send("Exito");
-		} catch (error) {
-			res.status(500).send("Hubo un error al obtener los datos");
-		}
-	};
+const api = express.Router();
 
-//** OBTIENE PRODUCTOS POR ID */
+api.get("/", productsControllers.obtenerProductos);
 
-app.get("/productos/:id"),
-	(req, res) => {
-		try {
-			const id = req.params.id;
-			res.send("Producto Obtenido");
-			res.status(201).send(id);
-		} catch (error) {
-			res.status(500).send("Hubo un error al obtener por id");
-		}
-	};
+api.get("/:id", productsControllers.productosById);
 
-//** AGREGA UN PRODUCTO */
+api.post("/", productsControllers.agregarProducto);
 
-app.post("/productos/"),
-	(req, res) => {
-		try {
-			res.send("Producto Agregado");
-			res.status(200).send("Exito");
-		} catch (error) {
-			res.status(500).send("Hubo un error al agregar");
-		}
-	};
+api.put("/editar/:id", productsControllers.editaUnProducto);
 
-//** ACTUALIZA UN PRODUCTO */
+api.put("/:id", productsControllers.editaByFormulario);
 
-app.put("/productos/editar/:id"),
-	(req, res) => {
-		try {
-			const id = req.params.id;
-			res.send("Producto Editado");
-			res.status(201).send(id);
-		} catch (error) {
-			res.status(500).send("Hubo un error al actualizar");
-		}
-	};
+api.delete("/borrar/:id", productsControllers.borraUnProducto);
 
-//** ACTUALIZA UN PRODUCTO ENVIADO POR FORMULARIO */
-
-app.put("/productos/:id"),
-	(req, res) => {
-		try {
-			const id = req.params.id;
-			res.send("Formulario Editado");
-			res.status(201).send(id);
-		} catch (error) {
-			res.status(500).send("Hubo un error al actualizar via form");
-		}
-	};
-
-//** BORRA POR ID EL PRODUCTO */
-
-app.delete("/productos/borrar/:id"),
-	(req, res) => {
-		try {
-			const id = req.params.id;
-			res.send("Producto Borrado");
-			res.status(201).send(id);
-		} catch (error) {
-			res.status(500).send("Hubo un error al borrar");
-		}
-	};
+module.exports = api;
