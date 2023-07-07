@@ -1,3 +1,5 @@
+const productServices = require("../services/productsServices");
+
 //** OBTIENE TODOS LOS PRODUCTOS */
 const obtenerProductos = (req, res) => {
 	try {
