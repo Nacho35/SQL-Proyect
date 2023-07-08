@@ -1,14 +1,19 @@
-const obtenerProductos = () => {};
+const productsModels = require("../models/productsModels");
 
-const productosById = () => {};
+const obtenerProductos = async () => {
+	const productos = await productsModels.obtenerProductos();
+	return productos;
+};
 
-const agregarProducto = () => {};
+const productosById = async () => {};
 
-const editaUnProducto = () => {};
+const agregarProducto = async () => {};
 
-const editaByFormulario = () => {};
+const editaUnProducto = async () => {};
 
-const borraUnProducto = () => {};
+const editaByFormulario = async () => {};
+
+const borraUnProducto = async () => {};
 
 module.exports = {
 	obtenerProductos,
