@@ -10,11 +10,11 @@ dotenv.config();
 app.get("/", (req, res) => {
 	res.send(`<h1> Mysql2 Backend</h1>
   <ul>
-  <li>GET <a href="">/productos</a></li>
-   <li>GET <a href="">/productos/:id</a></li>
-   <li>PUT <a href="">/productos/:id</a></li>
-   <li>DELETE <a href="">/productos/:id</a></li>
-   <li>POST <a href="">/productos/</a></li>
+  <li>GET <a href="/productos">Todos los Productos</a></li>
+   <li>GET <a href="/producto/:id">Productos por ID</a></li>
+   <li>PUT <a href="#">Edita el Producto</a></li>
+   <li>DELETE <a href="#">Borra el Producto</a></li>
+   <li>POST <a href="#">Agrega el Producto</a></li>
   </ul>
   `);
 });
