@@ -8,7 +8,7 @@ api.get("/", productsControllers.obtenerProductos);
 
 api.get("/:id", productsControllers.productosById);
 
-api.post("/", productsControllers.agregarProducto);
+api.post("/agregar", productsControllers.agregarProducto);
 
 api.put("/editar/:id", productsControllers.editaUnProducto);
 

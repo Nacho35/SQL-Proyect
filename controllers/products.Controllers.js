@@ -3,39 +3,45 @@ const productServices = require("../services/productsServices");
 //** OBTIENE TODOS LOS PRODUCTOS */
 const obtenerProductos = async (req, res) => {
 	try {
-		const productos = await productServices.obtenerProductos();
-		res.json(productos);
+		const product = await productServices.obtenerProductos();
+		res.status(200).json(product);
 	} catch (error) {
 		res.status(500).send("Hubo un error al obtener los datos");
 	}
 };
 
 //** OBTIENE PRODUCTOS POR ID */
-
-const productosById = (req, res) => {
+const productosById = async (req, res) => {
 	try {
 		const id = req.params.id;
-		res.send("Producto Obtenido");
-		res.status(201).send(id);
+		const product = await productServices.productosById(id);
+		if (product) {
+			res.status(200).json(product);
+		} else {
+			res
+				.status(404)
+				.send("No se encontró ningún producto con el ID proporcionado");
+		}
 	} catch (error) {
-		res.status(500).send("Hubo un error al obtener por id");
+		res.status(500).send("Hubo un error al obtener el producto por su ID");
 	}
 };
 
 //** AGREGA UN PRODUCTO */
-
-const agregarProducto = (req, res) => {
+const agregarProducto = async (req, res) => {
 	try {
-		res.send("Producto Agregado");
-		res.status(200).send("Exito");
+		const body = req.body;
+		const product = await productServices.agregarProducto(body);
+		res.status(200).json(product);
 	} catch (error) {
-		res.status(500).send("Hubo un error al agregar");
+		console.error("Error al agregar el producto:", error);
+		res.status(500).send("Hubo un error al agregar el producto");
 	}
 };
 
 //** ACTUALIZA UN PRODUCTO */
 
-const editaUnProducto = (req, res) => {
+const editaUnProducto = async (req, res) => {
 	try {
 		const id = req.params.id;
 		res.send("Producto Editado");
@@ -47,7 +53,7 @@ const editaUnProducto = (req, res) => {
 
 //** ACTUALIZA UN PRODUCTO ENVIADO POR FORMULARIO */
 
-const editaByFormulario = (req, res) => {
+const editaByFormulario = async (req, res) => {
 	try {
 		const id = req.params.id;
 		res.send("Formulario Editado");
@@ -59,7 +65,7 @@ const editaByFormulario = (req, res) => {
 
 //** BORRA POR ID EL PRODUCTO */
 
-const borraUnProducto = (req, res) => {
+const borraUnProducto = async (req, res) => {
 	try {
 		const id = req.params.id;
 		res.send("Producto Borrado");

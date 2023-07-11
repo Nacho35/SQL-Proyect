@@ -1,6 +1,5 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const db = require("./config/db");
 const routes = require("./routes/mainRoutes");
 
 const app = express();
@@ -8,14 +7,15 @@ const app = express();
 dotenv.config();
 
 app.get("/", (req, res) => {
-	res.send(`<h1> Mysql2 Backend</h1>
-  <ul>
-  <li>GET <a href="/productos">Todos los Productos</a></li>
-   <li>GET <a href="/producto/:id">Productos por ID</a></li>
-   <li>PUT <a href="#">Edita el Producto</a></li>
-   <li>DELETE <a href="#">Borra el Producto</a></li>
-   <li>POST <a href="#">Agrega el Producto</a></li>
-  </ul>
+	res.send(`<body style="background-color: yellow;"><h1 style="text-align: center;"> SQL Backend</h1>
+  <p style="text-align: justify; font-weight: bold; font-size: 1.5rem; margin: 10px;">
+  Mi proyecto consiste en desarrollar un backend que se conecta a una base de datos SQL para almacenar y gestionar información sobre productos de hardware. Este backend proporcionará una interfaz y lógica de programación que permitirá a los usuarios realizar operaciones de creación, lectura, actualización y eliminación de productos en la base de datos.
+
+Utilizaré una conexión a la base de datos SQL para ejecutar consultas y almacenar la información relacionada con los productos de hardware. Implementaré rutas, controladores y modelos que gestionen de manera eficiente las solicitudes de los clientes y realicen las operaciones correspondientes en la base de datos.
+
+Además de las operaciones básicas de CRUD, mi proyecto incluirá características como la validación de datos para asegurar la integridad de la información almacenada. También implementaré funcionalidades de búsqueda y filtrado para facilitar la recuperación de productos específicos.
+
+El objetivo final de mi proyecto es proporcionar una plataforma sólida y segura para la gestión eficiente de productos de hardware. Esto permitirá a los usuarios realizar operaciones sobre los productos de manera sencilla y garantizará la integridad y disponibilidad de la información almacenada en la base de datos.</p></body> 
   `);
 });
 

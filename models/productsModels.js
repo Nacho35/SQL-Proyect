@@ -10,14 +10,40 @@ const obtenerProductos = async () => {
 	}
 };
 
-const productosById = async () => {
+const productosById = async (id) => {
+	let sql = "SELECT * FROM productos WHERE id = ?";
 	try {
-	} catch (error) {}
+		const [rows] = await db.query(sql, [id]);
+		return rows[0];
+	} catch (error) {
+		throw new Error("Error al obtener el producto de la base de datos");
+	}
 };
 
-const agregarProducto = async () => {
+const agregarProducto = async (
+	id,
+	nombre,
+	precio,
+	stock,
+	descripcion,
+	imagen
+) => {
+	let sql =
+		"INSERT INTO productos (id, nombre, precio, stock, descripcion, imagen) VALUES (?, ?, ?, ?, ?, ?)";
 	try {
-	} catch (error) {}
+		await db.query(sql, [id, nombre, precio, stock, descripcion, imagen]);
+		const productoAgregado = {
+			id,
+			nombre,
+			precio,
+			stock,
+			descripcion,
+			imagen,
+		};
+		return productoAgregado; //!! CONTINUAR CON LA PETICION POST NO SE HACE AUN !!
+	} catch (error) {
+		throw new Error("Error al insertar el producto en la base de datos");
+	}
 };
 
 const editaUnProducto = async () => {
