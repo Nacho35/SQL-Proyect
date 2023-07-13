@@ -6,6 +6,7 @@ const obtenerProductos = async () => {
 		const [rows] = await db.query(sql);
 		return rows;
 	} catch (error) {
+		console.table(error);
 		throw new error("Error al obtener los productos de la base de datos");
 	}
 };
@@ -16,6 +17,7 @@ const productosById = async (id) => {
 		const [rows] = await db.query(sql, [id]);
 		return rows[0];
 	} catch (error) {
+		console.table(error);
 		throw new Error("Error al obtener el producto de la base de datos");
 	}
 };
@@ -40,8 +42,9 @@ const agregarProducto = async (
 			descripcion,
 			imagen,
 		};
-		return productoAgregado; //!! CONTINUAR CON LA PETICION POST NO SE HACE AUN !!
+		return productoAgregado;
 	} catch (error) {
+		console.table(error);
 		throw new Error("Error al insertar el producto en la base de datos");
 	}
 };

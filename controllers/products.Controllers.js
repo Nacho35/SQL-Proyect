@@ -32,9 +32,9 @@ const agregarProducto = async (req, res) => {
 	try {
 		const body = req.body;
 		const product = await productServices.agregarProducto(body);
-		res.status(200).json(product);
+		res.status(201).json(product);
 	} catch (error) {
-		console.error("Error al agregar el producto:", error);
+		console.log(error);
 		res.status(500).send("Hubo un error al agregar el producto");
 	}
 };
