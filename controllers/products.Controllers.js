@@ -4,7 +4,11 @@ const productServices = require("../services/productsServices");
 const obtenerProductos = async (req, res) => {
 	try {
 		const product = await productServices.obtenerProductos();
-		res.status(200).json(product);
+		if (product) {
+			res.status(200).json(product);
+		} else {
+			res.status(404).send("No existen productos en la base de datos");
+		}
 	} catch (error) {
 		res.status(500).send("Hubo un error al obtener los datos");
 	}
@@ -31,10 +35,20 @@ const productosById = async (req, res) => {
 const agregarProducto = async (req, res) => {
 	try {
 		const body = req.body;
-		const product = await productServices.agregarProducto(body);
-		res.status(201).json(product);
+		if (
+			!body ||
+			!body.nombre ||
+			!body.precio ||
+			!body.stock ||
+			!body.descripcion ||
+			!body.imagen
+		) {
+			res.status(400).json({ message: "Faltan parámetros requeridos" });
+			return;
+		}
+		await productServices.agregarProducto(body);
+		res.status(201).json({ message: "Producto agregado correctamente" });
 	} catch (error) {
-		console.log(error);
 		res.status(500).send("Hubo un error al agregar el producto");
 	}
 };
@@ -44,8 +58,12 @@ const agregarProducto = async (req, res) => {
 const editaUnProducto = async (req, res) => {
 	try {
 		const id = req.params.id;
-		res.send("Producto Editado");
-		res.status(201).send(id);
+		const product = await productServices.editaUnProducto(id);
+		if (!product) {
+			res.status(404).json({ message: "El producto no se encontró" });
+			return;
+		}
+		res.status(200).json({ message: "Producto editado correctamente" });
 	} catch (error) {
 		res.status(500).send("Hubo un error al actualizar");
 	}
@@ -57,9 +75,9 @@ const editaByFormulario = async (req, res) => {
 	try {
 		const id = req.params.id;
 		res.send("Formulario Editado");
-		res.status(201).send(id);
+		res.status(200).send(id);
 	} catch (error) {
-		res.status(500).send("Hubo un error al actualizar via form");
+		res.status(500).send("Hubo un error al actualizar el form"); //!! SIN TERMINAR !!
 	}
 };
 
@@ -68,10 +86,16 @@ const editaByFormulario = async (req, res) => {
 const borraUnProducto = async (req, res) => {
 	try {
 		const id = req.params.id;
-		res.send("Producto Borrado");
-		res.status(201).send(id);
+		const product = await productServices.borraUnProducto(id);
+		if (!product) {
+			res
+				.status(404)
+				.json({ message: "El producto no se encontró para su eliminacion" });
+			return;
+		}
+		res.status(200).json({ message: "Producto borrado correctamente" });
 	} catch (error) {
-		res.status(500).send("Hubo un error al borrar");
+		res.status(500).send("Hubo un error al eliminar");
 	}
 };
 

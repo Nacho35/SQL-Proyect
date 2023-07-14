@@ -15,11 +15,17 @@ const agregarProducto = async (body) => {
 	return product;
 };
 
-const editaUnProducto = async () => {};
+const editaUnProducto = async (id) => {
+	const product = await productsModels.editaUnProducto(id);
+	return product;
+};
 
 const editaByFormulario = async () => {};
 
-const borraUnProducto = async () => {};
+const borraUnProducto = async (id) => {
+	const product = await productsModels.borraUnProducto(id);
+	return product;
+};
 
 module.exports = {
 	obtenerProductos,

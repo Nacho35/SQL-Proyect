@@ -49,9 +49,30 @@ const agregarProducto = async (
 	}
 };
 
-const editaUnProducto = async () => {
+const editaUnProducto = async (
+	id,
+	nombre,
+	precio,
+	stock,
+	descripcion,
+	imagen
+) => {
+	let sql =
+		"UPDATE productos SET nombre = ?, precio = ?, stock = ?, descripcion = ?, imagen = ? WHERE id = ?";
 	try {
-	} catch (error) {}
+		const result = await db.query(sql, [
+			nombre,
+			precio,
+			stock,
+			descripcion,
+			imagen,
+			id,
+		]);
+		return result[0];
+	} catch (error) {
+		console.table(error);
+		throw new Error("Error al editar el producto en la base de datos");
+	}
 };
 
 const editaByFormulario = async () => {
@@ -59,9 +80,15 @@ const editaByFormulario = async () => {
 	} catch (error) {}
 };
 
-const borraUnProducto = async () => {
+const borraUnProducto = async (id) => {
+	let sql = "DELETE FROM productos WHERE id = ?";
 	try {
-	} catch (error) {}
+		const result = await db.query(sql, [id]);
+		return result[0];
+	} catch (error) {
+		console.table(error);
+		throw new Error("Error al borrar el producto de la base de datos");
+	}
 };
 
 module.exports = {
