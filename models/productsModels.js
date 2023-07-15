@@ -64,16 +64,11 @@ const editaUnProducto = async (id, body) => {
 	}
 };
 
-const editaByFormulario = async () => {
-	try {
-	} catch (error) {}
-};
-
 const borraUnProducto = async (id) => {
 	let sql = "DELETE FROM productos WHERE id = ?";
 	try {
-		const result = await db.query(sql, [id]);
-		return result[0];
+		const rows = await db.query(sql, [id]);
+		return rows[0];
 	} catch (error) {
 		console.table(error);
 		throw new Error("Error al borrar el producto de la base de datos");
@@ -85,6 +80,5 @@ module.exports = {
 	productosById,
 	agregarProducto,
 	editaUnProducto,
-	editaByFormulario,
 	borraUnProducto,
 };

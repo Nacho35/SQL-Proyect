@@ -12,8 +12,6 @@ api.post("/agregar", productsControllers.agregarProducto);
 
 api.put("/editar/:id", productsControllers.editaUnProducto);
 
-api.put("/:id", productsControllers.editaByFormulario);
-
 api.delete("/borrar/:id", productsControllers.borraUnProducto);
 
 module.exports = api;

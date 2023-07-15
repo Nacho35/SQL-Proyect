@@ -20,8 +20,6 @@ const editaUnProducto = async (id, body) => {
 	return product;
 };
 
-const editaByFormulario = async () => {};
-
 const borraUnProducto = async (id) => {
 	const product = await productsModels.borraUnProducto(id);
 	return product;
@@ -32,6 +30,5 @@ module.exports = {
 	productosById,
 	agregarProducto,
 	editaUnProducto,
-	editaByFormulario,
 	borraUnProducto,
 };

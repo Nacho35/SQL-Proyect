@@ -73,18 +73,6 @@ const editaUnProducto = async (req, res) => {
 	}
 };
 
-//** ACTUALIZA UN PRODUCTO ENVIADO POR FORMULARIO */
-
-const editaByFormulario = async (req, res) => {
-	try {
-		const id = req.params.id;
-		res.send("Formulario Editado");
-		res.status(200).send(id);
-	} catch (error) {
-		res.status(500).send("Hubo un error al actualizar el form"); //!! SIN TERMINAR !!
-	}
-};
-
 //** BORRA POR ID EL PRODUCTO */
 
 const borraUnProducto = async (req, res) => {
@@ -108,6 +96,5 @@ module.exports = {
 	productosById,
 	agregarProducto,
 	editaUnProducto,
-	editaByFormulario,
 	borraUnProducto,
 };
