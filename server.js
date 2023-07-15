@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const routes = require("./routes/mainRoutes");
+const api = require("./routes/mainRoutes");
 
 const app = express();
 
@@ -19,11 +19,17 @@ El objetivo final de mi proyecto es proporcionar una plataforma sólida y segura
   `);
 });
 
+app.use(express.json());
+
+app.use(
+	express.urlencoded({
+		extended: false,
+	})
+);
 //** RUTA PREDETERMINADA */
-app.use("/productos", routes);
+app.use("/productos", api);
 
 //** FUNCION EN CASO DE QUE LA URL NO EXISTA */
-
 app.use(function (req, res, next) {
 	answer = {
 		error: true,

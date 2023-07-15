@@ -35,6 +35,7 @@ const productosById = async (req, res) => {
 const agregarProducto = async (req, res) => {
 	try {
 		const body = req.body;
+		console.log("body", body);
 		if (
 			!body ||
 			!body.nombre ||
@@ -49,6 +50,7 @@ const agregarProducto = async (req, res) => {
 		await productServices.agregarProducto(body);
 		res.status(201).json({ message: "Producto agregado correctamente" });
 	} catch (error) {
+		console.log(error);
 		res.status(500).send("Hubo un error al agregar el producto");
 	}
 };
@@ -57,15 +59,17 @@ const agregarProducto = async (req, res) => {
 
 const editaUnProducto = async (req, res) => {
 	try {
+		const body = req.body;
 		const id = req.params.id;
-		const product = await productServices.editaUnProducto(id);
+		const product = await productServices.editaUnProducto(id, body);
 		if (!product) {
 			res.status(404).json({ message: "El producto no se encontró" });
 			return;
 		}
 		res.status(200).json({ message: "Producto editado correctamente" });
 	} catch (error) {
-		res.status(500).send("Hubo un error al actualizar");
+		console.log(error);
+		res.status(500).send("Hubo un error al actualizar el producto");
 	}
 };
 

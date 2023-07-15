@@ -22,55 +22,44 @@ const productosById = async (id) => {
 	}
 };
 
-const agregarProducto = async (
-	id,
-	nombre,
-	precio,
-	stock,
-	descripcion,
-	imagen
-) => {
-	let sql =
-		"INSERT INTO productos (id, nombre, precio, stock, descripcion, imagen) VALUES (?, ?, ?, ?, ?, ?)";
+const agregarProducto = async (body) => {
+	const { nombre, precio, stock, descripcion, imagen } = body;
+	let sql = "INSERT INTO productos SET ?";
 	try {
-		await db.query(sql, [id, nombre, precio, stock, descripcion, imagen]);
-		const productoAgregado = {
-			id,
-			nombre,
-			precio,
-			stock,
-			descripcion,
-			imagen,
-		};
-		return productoAgregado;
+		const [rows] = await db.query(sql, {
+			nombre: nombre,
+			precio: precio,
+			stock: stock,
+			descripcion: descripcion,
+			imagen: imagen,
+		});
+		if (rows.affectedRows === 1) {
+			return { message: "Se agrego correctamente la informacion", rows };
+		} else {
+			return { message: "No se agrego la informacion", rows };
+		}
 	} catch (error) {
-		console.table(error);
 		throw new Error("Error al insertar el producto en la base de datos");
 	}
 };
 
-const editaUnProducto = async (
-	id,
-	nombre,
-	precio,
-	stock,
-	descripcion,
-	imagen
-) => {
-	let sql =
-		"UPDATE productos SET nombre = ?, precio = ?, stock = ?, descripcion = ?, imagen = ? WHERE id = ?";
+const editaUnProducto = async (id, body) => {
+	const { nombre, precio, stock, descripcion, imagen } = body;
+	let sql = `UPDATE productos SET ? WHERE id='${id}'`;
 	try {
-		const result = await db.query(sql, [
-			nombre,
-			precio,
-			stock,
-			descripcion,
-			imagen,
-			id,
-		]);
-		return result[0];
+		const [rows] = await db.query(sql, {
+			nombre: nombre,
+			precio: precio,
+			stock: stock,
+			descripcion: descripcion,
+			imagen: imagen,
+		});
+		if (rows.affectedRows === 1) {
+			return { message: "Se edito correctamente la informacion", rows };
+		} else {
+			return { message: "No se edito la informacion", rows };
+		}
 	} catch (error) {
-		console.table(error);
 		throw new Error("Error al editar el producto en la base de datos");
 	}
 };

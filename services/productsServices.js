@@ -15,8 +15,8 @@ const agregarProducto = async (body) => {
 	return product;
 };
 
-const editaUnProducto = async (id) => {
-	const product = await productsModels.editaUnProducto(id);
+const editaUnProducto = async (id, body) => {
+	const product = await productsModels.editaUnProducto(id, body);
 	return product;
 };
 
