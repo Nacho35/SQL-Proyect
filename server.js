@@ -19,8 +19,10 @@ El objetivo final de mi proyecto es proporcionar una plataforma sólida y segura
   `);
 });
 
+//** PERMITE TRATAR LOS DATOS EN FORMATO JSON */
 app.use(express.json());
 
+//** PERMITE ACCEDER A DATOS QUE ESTEN ANIDADOS */
 app.use(
 	express.urlencoded({
 		extended: false,

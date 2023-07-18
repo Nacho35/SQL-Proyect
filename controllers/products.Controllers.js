@@ -2,14 +2,23 @@ const productServices = require("../services/productsServices");
 
 //** OBTIENE TODOS LOS PRODUCTOS */
 const obtenerProductos = async (req, res) => {
+	//** LLAMA AL FILTRADO DE MODELS SE DEFINE COMO UN OBJETO */
+	const filter = {
+		nombre: req.query.nombre || "",
+		precioMin: parseFloat(req.query.precioMin) || null,
+		precioMax: parseFloat(req.query.precioMax) || null,
+		order: req.query.orden || "",
+		limit: parseInt(req.query.limt) || 10,
+	};
 	try {
-		const product = await productServices.obtenerProductos();
+		const product = await productServices.obtenerProductos(filter);
 		if (product) {
 			res.status(200).json(product);
 		} else {
 			res.status(404).send("No existen productos en la base de datos");
 		}
 	} catch (error) {
+		console.log(error);
 		res.status(500).send("Hubo un error al obtener los datos");
 	}
 };

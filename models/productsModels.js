@@ -1,13 +1,51 @@
 const db = require("../config/db");
 
-const obtenerProductos = async () => {
+const obtenerProductos = async (filter) => {
 	let sql = "SELECT * FROM productos";
+
+	//** FILTRADO DE PRODUCTOS */
+	let whereClause = "";
+	let values = [];
+
+	//** FILTRO POR NOMBRE */
+	if (filter.nombre) {
+		whereClause += "nombre LIKE ? AND ";
+		values.push(`%${filter.nombre}`);
+		console.log(filter);
+	}
+
+	//** FILTROS POR PRECIO */
+	if (filter.precioMin && filter.precioMax) {
+		whereClause += "precio BETWEEN ? AND ? AND ";
+		values.push(filter.precioMin, filter.precioMax);
+	} else if (filter.precioMin) {
+		whereClause += "precio > ? AND ";
+		values.push(filter.precioMin);
+	} else if (filter.precioMax) {
+		whereClause += "precio < ? AND ";
+		values.push(filter.precioMax);
+	}
+
+	if (whereClause !== "") {
+		whereClause = "WHERE " + whereClause.slice(0, -5);
+		sql += " " + whereClause;
+	}
+
+	//** FILTRO POR ORDEN DE < a > */
+	if (filter.order) {
+		const order = filter.order === "desc" ? "DESC" : "ASC";
+		sql += ` ORDER BY precio ${order}`;
+	}
+
+	//** LIMITACION */
+	sql += ` LIMIT ${filter.limit}`;
+
 	try {
-		const [rows] = await db.query(sql);
+		const [rows] = await db.query(sql, values);
 		return rows;
 	} catch (error) {
 		console.table(error);
-		throw new error("Error al obtener los productos de la base de datos");
+		throw new Error("Error al obtener los productos de la base de datos");
 	}
 };
 
