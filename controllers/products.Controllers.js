@@ -36,6 +36,7 @@ const productosById = async (req, res) => {
 				.send("No se encontró ningún producto con el ID proporcionado");
 		}
 	} catch (error) {
+		console.log(error);
 		res.status(500).send("Hubo un error al obtener el producto por su ID");
 	}
 };
@@ -44,7 +45,6 @@ const productosById = async (req, res) => {
 const agregarProducto = async (req, res) => {
 	try {
 		const body = req.body;
-		console.log("body", body);
 		if (
 			!body ||
 			!body.nombre ||
@@ -96,7 +96,8 @@ const borraUnProducto = async (req, res) => {
 		}
 		res.status(200).json({ message: "Producto borrado correctamente" });
 	} catch (error) {
-		res.status(500).send("Hubo un error al eliminar");
+		console.log(error);
+		res.status(500).send("Hubo un error al eliminar el producto");
 	}
 };
 

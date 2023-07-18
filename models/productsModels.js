@@ -11,7 +11,6 @@ const obtenerProductos = async (filter) => {
 	if (filter.nombre) {
 		whereClause += "nombre LIKE ? AND ";
 		values.push(`%${filter.nombre}%`);
-		console.log(filter);
 	}
 
 	//** FILTROS POR PRECIO */
@@ -37,7 +36,7 @@ const obtenerProductos = async (filter) => {
 		sql += ` ORDER BY precio ${order}`;
 	}
 
-	//** LIMITACION */
+	//** LIMITACION DE PRODUCTOS */
 	sql += ` LIMIT ${filter.limit}`;
 
 	try {
@@ -77,6 +76,7 @@ const agregarProducto = async (body) => {
 			return { message: "No se agrego la informacion", rows };
 		}
 	} catch (error) {
+		console.table(error);
 		throw new Error("Error al insertar el producto en la base de datos");
 	}
 };
@@ -98,6 +98,7 @@ const editaUnProducto = async (id, body) => {
 			return { message: "No se edito la informacion", rows };
 		}
 	} catch (error) {
+		console.table(error);
 		throw new Error("Error al editar el producto en la base de datos");
 	}
 };
