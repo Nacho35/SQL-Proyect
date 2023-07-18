@@ -10,7 +10,7 @@ const obtenerProductos = async (filter) => {
 	//** FILTRO POR NOMBRE */
 	if (filter.nombre) {
 		whereClause += "nombre LIKE ? AND ";
-		values.push(`%${filter.nombre}`);
+		values.push(`%${filter.nombre}%`);
 		console.log(filter);
 	}
 
@@ -19,10 +19,10 @@ const obtenerProductos = async (filter) => {
 		whereClause += "precio BETWEEN ? AND ? AND ";
 		values.push(filter.precioMin, filter.precioMax);
 	} else if (filter.precioMin) {
-		whereClause += "precio > ? AND ";
+		whereClause += "precio >= ? AND ";
 		values.push(filter.precioMin);
 	} else if (filter.precioMax) {
-		whereClause += "precio < ? AND ";
+		whereClause += "precio <= ? AND ";
 		values.push(filter.precioMax);
 	}
 

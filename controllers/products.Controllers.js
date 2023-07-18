@@ -7,8 +7,8 @@ const obtenerProductos = async (req, res) => {
 		nombre: req.query.nombre || "",
 		precioMin: parseFloat(req.query.precioMin) || null,
 		precioMax: parseFloat(req.query.precioMax) || null,
-		order: req.query.orden || "",
-		limit: parseInt(req.query.limt) || 10,
+		order: req.query.order || "",
+		limit: parseInt(req.query.limit) || 10,
 	};
 	try {
 		const product = await productServices.obtenerProductos(filter);
