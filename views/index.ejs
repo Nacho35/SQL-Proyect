@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include("./partials/header.ejs")%>
+		<title>DATOS</title>
+	</head>
+	<body>
+		<%- include("./partials/navigation.ejs")%>
+		<div class="container-fluid">
+			<div class="container mt-2 table-responsive">
+				<table id="tabla-datos" class="table table-hover table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Precio</th>
+							<th scope="col">Stock</th>
+							<th scope="col">Descripcion</th>
+							<th scope="col">Imagen</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		<%- include("./partials/footer.ejs")%>
+		<script src="/public/assets/scriptTable.js"></script>
+	</body>
+</html>

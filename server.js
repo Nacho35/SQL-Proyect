@@ -1,27 +1,34 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const morgan = require("morgan");
 const api = require("./routes/mainRoutes");
+const path = require("path");
 
 const app = express();
 
 dotenv.config();
 
+//** PLANTILLA */
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+//** CONTENIDO STATICO */
+app.use("/public", express.static(path.join(__dirname, "public")));
+
+//** RENDERS */
 app.get("/", (req, res) => {
-	res.send(`<body style="background-color: yellow;"><h1 style="text-align: center;"> SQL Backend</h1>
-  <p style="text-align: justify; font-weight: bold; font-size: 1.5rem; margin: 10px;">
-  Mi proyecto consiste en desarrollar un backend que se conecta a una base de datos SQL para almacenar y gestionar información sobre productos de hardware o cualquier producto. Este backend proporcionará una interfaz y lógica de programación que permitirá a los usuarios realizar operaciones de creación, lectura, actualización y eliminación de productos en la base de datos.
+	res.render("partials/navigation");
+});
 
-Utilizaré una conexión a la base de datos SQL para ejecutar consultas y almacenar la información relacionada con los productos de hardware. Implementaré rutas, controladores y modelos que gestionen de manera eficiente las solicitudes de los clientes y realicen las operaciones correspondientes en la base de datos.
-
-Además de las operaciones básicas de CRUD, mi proyecto incluirá características como la validación de datos para asegurar la integridad de la información almacenada. También implementaré funcionalidades de búsqueda y filtrado para facilitar la recuperación de productos específicos.
-
-El objetivo final de mi proyecto es proporcionar una plataforma sólida y segura para la gestión eficiente de productos de hardware. Esto permitirá a los usuarios realizar operaciones sobre los productos de manera sencilla y garantizará la integridad y disponibilidad de la información almacenada en la base de datos. Además, también tendra un login y un register para el uso y almacenado de datos.</p></body> 
-  `);
+app.get("/productos", (req, res) => {
+	res.render("index.ejs");
 });
 
 //** PERMITE TRATAR LOS DATOS EN FORMATO JSON */
 app.use(express.json());
 
+//** MIDDLEWARES */
+app.use(morgan("dev"));
 //** PERMITE ACCEDER A DATOS QUE ESTEN ANIDADOS */
 app.use(
 	express.urlencoded({
