@@ -8,12 +8,12 @@ const obtenerProductos = async (req, res) => {
 		precioMin: parseFloat(req.query.precioMin) || null,
 		precioMax: parseFloat(req.query.precioMax) || null,
 		order: req.query.order || "",
-		limit: parseInt(req.query.limit) || 10,
+		limit: parseInt(req.query.limit) || 100,
 	};
 	try {
-		const product = await productServices.obtenerProductos(filter);
-		if (product) {
-			res.status(200).json(product);
+		const productos = await productServices.obtenerProductos(filter);
+		if (Array.isArray(productos)) {
+			res.status(200).render("index.ejs", { productos });
 		} else {
 			res.status(404).send("No existen productos en la base de datos");
 		}

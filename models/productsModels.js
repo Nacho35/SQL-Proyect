@@ -8,21 +8,25 @@ const obtenerProductos = async (filter) => {
 	let values = [];
 
 	//** FILTRO POR NOMBRE */
-	if (filter.nombre) {
-		whereClause += "nombre LIKE ? AND ";
-		values.push(`%${filter.nombre}%`);
+	if (filter) {
+		if (filter.nombre) {
+			whereClause += "nombre LIKE ? AND ";
+			values.push(`%${filter.nombre}%`);
+		}
 	}
 
 	//** FILTROS POR PRECIO */
-	if (filter.precioMin && filter.precioMax) {
-		whereClause += "precio BETWEEN ? AND ? AND ";
-		values.push(filter.precioMin, filter.precioMax);
-	} else if (filter.precioMin) {
-		whereClause += "precio >= ? AND ";
-		values.push(filter.precioMin);
-	} else if (filter.precioMax) {
-		whereClause += "precio <= ? AND ";
-		values.push(filter.precioMax);
+	if (filter) {
+		if (filter.precioMin && filter.precioMax) {
+			whereClause += "precio BETWEEN ? AND ? AND ";
+			values.push(filter.precioMin, filter.precioMax);
+		} else if (filter.precioMin) {
+			whereClause += "precio >= ? AND ";
+			values.push(filter.precioMin);
+		} else if (filter.precioMax) {
+			whereClause += "precio <= ? AND ";
+			values.push(filter.precioMax);
+		}
 	}
 
 	if (whereClause !== "") {
@@ -31,13 +35,17 @@ const obtenerProductos = async (filter) => {
 	}
 
 	//** FILTRO POR ORDEN DE < a > */
-	if (filter.order) {
-		const order = filter.order === "desc" ? "DESC" : "ASC";
-		sql += ` ORDER BY precio ${order}`;
+	if (filter) {
+		if (filter.order) {
+			const order = filter.order === "desc" ? "DESC" : "ASC";
+			sql += ` ORDER BY precio ${order}`;
+		}
 	}
 
 	//** LIMITACION DE PRODUCTOS */
-	sql += ` LIMIT ${filter.limit}`;
+	if (filter) {
+		sql += ` LIMIT ${filter.limit}`;
+	}
 
 	try {
 		const [rows] = await db.query(sql, values);

@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const api = require("./routes/mainRoutes");
 const path = require("path");
+const { obtenerProductos } = require("./controllers/products.Controllers");
 
 const app = express();
 
@@ -17,11 +18,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 //** RENDERS */
 app.get("/", (req, res) => {
-	res.render("partials/navigation");
-});
-
-app.get("/productos", (req, res) => {
-	res.render("index.ejs");
+	res.status(200).render("partials/navigation");
 });
 
 //** PERMITE TRATAR LOS DATOS EN FORMATO JSON */
