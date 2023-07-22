@@ -17,6 +17,7 @@
 							<th class="text-center" scope="col">Stock</th>
 							<th class="text-center" scope="col">Descripcion</th>
 							<th class="text-center" scope="col">Imagen</th>
+							<th class="text-center" scope="col">Botones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,6 +39,19 @@
 										alt="imagen" />
 								</a>
 							</td>
+							<td>
+								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+									<a class="btn btn-outline-primary" href="#" role="button"
+										>Editar</a
+									>
+									<a
+										class="btn btn-outline-danger"
+										href="/borrar/<%= producto.id %>"
+										role="button"
+										>Borrar</a
+									>
+								</div>
+							</td>
 						</tr>
 						<% }) %> <% } else { %>
 						<tr>
@@ -48,7 +62,7 @@
 				</table>
 			</div>
 		</div>
-		<script src="/public/lightbox2/js/lightbox.js"></script>
+		<script src="/public/lightbox2/js/lightbox-plus-jquery.js"></script>
 		<%- include("./partials/footer.ejs")%>
 	</body>
 </html>
