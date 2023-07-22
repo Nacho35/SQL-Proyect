@@ -28,8 +28,15 @@
 							<td class="text-center"><%= producto.precio %></td>
 							<td class="text-center"><%= producto.stock %></td>
 							<td class="text-center"><%= producto.descripcion %></td>
-							<td class="text-center">
-								<img src="<%= producto.imagen %>" alt="imagen" />
+							<td class="text-center col-1">
+								<a
+									href="/public/<%= producto.imagen %>"
+									data-lightbox="gallery">
+									<img
+										class="img-fluid rounded w-50 h-auto"
+										src="/public/<%= producto.imagen %>"
+										alt="imagen" />
+								</a>
 							</td>
 						</tr>
 						<% }) %> <% } else { %>
@@ -41,6 +48,7 @@
 				</table>
 			</div>
 		</div>
+		<script src="/public/lightbox2/js/lightbox.js"></script>
 		<%- include("./partials/footer.ejs")%>
 	</body>
 </html>
