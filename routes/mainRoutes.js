@@ -10,8 +10,8 @@ api.get("/:id", productsControllers.productosById);
 
 api.post("/agregar", productsControllers.agregarProducto);
 
-api.put("/editar/:id", productsControllers.editaUnProducto);
+api.get("/editar/:id", productsControllers.editaUnProducto);
 
-api.delete("/borrar/:id", productsControllers.borraUnProducto);
+api.get("/borrar/:id", productsControllers.borraUnProducto);
 
 module.exports = api;

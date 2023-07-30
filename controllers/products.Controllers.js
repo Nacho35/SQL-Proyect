@@ -15,11 +15,13 @@ const obtenerProductos = async (req, res) => {
 		if (Array.isArray(productos)) {
 			res.status(200).render("index.ejs", { productos });
 		} else {
-			res.status(404).send("No existen productos en la base de datos");
+			res
+				.status(404)
+				.json({ message: "No existen productos en la base de datos" });
 		}
 	} catch (error) {
 		console.log(error);
-		res.status(500).send("Hubo un error al obtener los datos");
+		res.status(500).json({ message: "Hubo un error al obtener los datos" });
 	}
 };
 
@@ -31,13 +33,15 @@ const productosById = async (req, res) => {
 		if (product) {
 			res.status(200).json(product);
 		} else {
-			res
-				.status(404)
-				.send("No se encontró ningún producto con el ID proporcionado");
+			res.status(404).json({
+				message: "No se encontró ningún producto con el ID proporcionado",
+			});
 		}
 	} catch (error) {
 		console.log(error);
-		res.status(500).send("Hubo un error al obtener el producto por su ID");
+		res
+			.status(500)
+			.json({ message: "Hubo un error al obtener el producto por su ID" });
 	}
 };
 
@@ -60,7 +64,7 @@ const agregarProducto = async (req, res) => {
 		res.status(201).json({ message: "Producto agregado correctamente" });
 	} catch (error) {
 		console.log(error);
-		res.status(500).send("Hubo un error al agregar el producto");
+		res.status(500).json({ message: "Hubo un error al agregar el producto" });
 	}
 };
 
@@ -78,7 +82,9 @@ const editaUnProducto = async (req, res) => {
 		res.status(200).json({ message: "Producto editado correctamente" });
 	} catch (error) {
 		console.log(error);
-		res.status(500).send("Hubo un error al actualizar el producto");
+		res
+			.status(500)
+			.json({ message: "Hubo un error al actualizar el producto" });
 	}
 };
 
@@ -94,10 +100,12 @@ const borraUnProducto = async (req, res) => {
 				.json({ message: "El producto no se encontró para su eliminacion" });
 			return;
 		}
-		res.status(200).json({ message: "Producto borrado correctamente" });
+		res.status(200).json({ message: "Producto Eliminado" });
 	} catch (error) {
 		console.log(error);
-		res.status(500).send("Hubo un error al eliminar el producto");
+		res.status(500).json({
+			message: "Hubo un Error al Eliminar el Producto",
+		});
 	}
 };
 
