@@ -12,6 +12,8 @@ api.post("/agregar", productsControllers.agregarProducto);
 
 api.get("/editar/:id", productsControllers.editaUnProducto);
 
+api.put("/actualizar/:id", productsControllers.editaUnProducto);
+
 api.get("/borrar/:id", productsControllers.borraUnProducto);
 
 module.exports = api;

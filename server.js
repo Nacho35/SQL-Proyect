@@ -1,9 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
+const methodOverride = require("method-override");
 const api = require("./routes/mainRoutes");
 const path = require("path");
-const { obtenerProductos } = require("./controllers/products.Controllers");
 
 const app = express();
 
@@ -25,6 +26,10 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 //** MIDDLEWARES */
+app.use(cors());
+
+app.use(methodOverride("_method"));
+
 app.use(morgan("dev"));
 //** PERMITE ACCEDER A DATOS QUE ESTEN ANIDADOS */
 app.use(

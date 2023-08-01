@@ -79,7 +79,7 @@ const editaUnProducto = async (req, res) => {
 			res.status(404).json({ message: "El producto no se encontró" });
 			return;
 		}
-		res.status(200).json({ message: "Producto editado correctamente" });
+		res.status(200).json({ message: "Producto Actualizado" });
 	} catch (error) {
 		console.log(error);
 		res

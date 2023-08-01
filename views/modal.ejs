@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include("./partials/header.ejs")%>
+	</head>
+	<body>
+		<form
+			action="/productos/actualizar/<%= producto.id %>?_method=PUT"
+			method="post">
+			<div class="modal" id="editModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Editar Producto</h5>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<input
+								type="text"
+								id="nombre"
+								placeholder="Nombre"
+								required
+								value="<%= producto.nombre %>" />
+							<input
+								type="number"
+								id="precio"
+								placeholder="Precio"
+								required
+								value="<%= producto.precio %>" />
+							<input
+								type="number"
+								id="stock"
+								placeholder="Stock"
+								required
+								value="<%= producto.stock %>" />
+							<textarea
+								id="descripcion"
+								placeholder="Descripción"
+								required
+								value="<%= producto.descripcion %>"></textarea>
+							<input
+								type="url"
+								id="imagen"
+								placeholder="Imagen"
+								required
+								value="<%= producto.imagen %>" />
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-primary">Aceptar</button>
+							<button
+								type="button"
+								class="btn btn-secondary"
+								data-bs-dismiss="modal">
+								Cancelar
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		<script src="/public/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
