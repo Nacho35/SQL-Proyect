@@ -18,10 +18,11 @@ async function openModalWithProductData(productId) {
 		console.error("El elemento modal no se encontró en el DOM");
 	}
 	try {
-		const response = await fetch(`/productos/editar/${productId}`);
+		const response = await fetch(`/productos/editar/${productId}`, {
+			method: "GET",
+		});
 
 		const producto = await response.json();
-		console.log(producto);
 
 		document.getElementById("nombre").value = producto.nombre;
 		document.getElementById("precio").value = producto.precio;

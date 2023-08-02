@@ -1,70 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include("./partials/header.ejs")%>
+
+<head>
+	<%- include("./partials/header.ejs")%>
 		<title>DATOS</title>
-	</head>
-	<body class="bg-warning">
-		<%- include("./partials/navigation.ejs")%>
+</head>
+
+<body class="bg-warning">
+	<%- include("./partials/navigation.ejs")%>
 		<div class="container-fluid">
 			<div class="container mt-2 table-responsive">
-				<table class="table table-hover table-dark">
-					<thead>
-						<tr>
-							<th class="text-center" scope="col">Id</th>
-							<th class="text-center" scope="col">Nombre</th>
-							<th class="text-center" scope="col">Precio</th>
-							<th class="text-center" scope="col">Stock</th>
-							<th class="text-center" scope="col">Descripcion</th>
-							<th class="text-center" scope="col">Imagen</th>
-							<th class="text-center" scope="col">Botones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% if (Array.isArray(productos)) { %> <%
-						productos.forEach(function(producto) { %>
-						<tr>
-							<td class="text-center"><%= producto.id %></td>
-							<td class="text-center"><%= producto.nombre %></td>
-							<td class="text-center"><%= producto.precio %></td>
-							<td class="text-center"><%= producto.stock %></td>
-							<td class="text-center"><%= producto.descripcion %></td>
-							<td class="text-center col-1">
-								<a
-									href="/public/<%= producto.imagen %>"
-									data-lightbox="gallery">
-									<img
-										class="img-fluid rounded w-50 h-auto"
-										src="/public/<%= producto.imagen %>"
-										alt="imagen" />
-								</a>
-							</td>
-							<td>
-								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-									<a
-										class="btn btn-outline-primary"
-										href="/productos/editar/<%= producto.id %>"
-										data-product-id="<%= producto.id %>"
-										role="button"
-										>Editar</a
-									>
-									<a
-										class="btn btn-outline-danger"
-										href="/productos/borrar/<%= producto.id %>"
-										data-product-id="<%= producto.id %>"
-										role="button"
-										>Borrar</a
-									>
-								</div>
-							</td>
-						</tr>
-						<% }) %> <% } else { %>
-						<tr>
-							<td class="text-center" colspan="6">No hay datos disponibles</td>
-						</tr>
-						<% } %>
-					</tbody>
-				</table>
+				<%- include("./searchbar.ejs")%>
+					<table class="table table-hover table-dark">
+						<thead>
+							<tr>
+								<th class="text-center" scope="col">Id</th>
+								<th class="text-center" scope="col">Nombre</th>
+								<th class="text-center" scope="col">Precio</th>
+								<th class="text-center" scope="col">Stock</th>
+								<th class="text-center" scope="col">Descripcion</th>
+								<th class="text-center" scope="col">Imagen</th>
+								<th class="text-center" scope="col">Botones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% if (Array.isArray(productos)) { %>
+								<% productos.forEach(function(producto) { %>
+									<tr>
+										<td class="text-center">
+											<%= producto.id %>
+										</td>
+										<td class="text-center">
+											<%= producto.nombre %>
+										</td>
+										<td class="text-center">
+											<%= producto.precio %>
+										</td>
+										<td class="text-center">
+											<%= producto.stock %>
+										</td>
+										<td class="text-center">
+											<%= producto.descripcion %>
+										</td>
+										<td class="text-center col-1">
+											<a href="/public/<%= producto.imagen %>" data-lightbox="gallery">
+												<img class="img-fluid rounded w-50 h-auto" src="/public/<%= producto.imagen %>" alt="imagen" />
+											</a>
+										</td>
+										<td>
+											<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+												<a class="btn btn-outline-primary" href="/productos/editar/<%= producto.id %>"
+													data-product-id="<%= producto.id %>" role="button">Editar</a>
+												<a class="btn btn-outline-danger" href="/productos/borrar/<%= producto.id %>"
+													data-product-id="<%= producto.id %>" role="button">Borrar</a>
+											</div>
+										</td>
+									</tr>
+									<% }) %>
+										<% } else { %>
+											<tr>
+												<td class="text-center" colspan="6">No hay datos disponibles</td>
+											</tr>
+											<% } %>
+						</tbody>
+					</table>
 			</div>
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -73,5 +72,6 @@
 		<script src="/public/scriptBorrar.js"></script>
 		<script src="/public/scriptEditar.js"></script>
 		<%- include("./partials/footer.ejs")%>
-	</body>
+</body>
+
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include("./partials/header.ejs")%>
+</head>
+
+<body>
+  <div class="mb-3">
+    <div class="text-center d-flex m-1">
+      <input class="form-control me-2" type="text" id="nombreFilter" placeholder="Nombre del Producto">
+      <input class="form-control me-2" type="number" id="precioMinFilter" placeholder="Precio Mínimo">
+      <input class="form-control me-2" type="number" id="precioMaxFilter" placeholder="Precio Máximo">
+      <select class="form-control me-2" id="sortOrder">
+        <option value="">Ordenar por</option>
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
+      </select>
+      <input class="form-control me-2" type="number" id="limit" placeholder="Límite de Productos">
+      <button id="searchButton" class="btn btn-dark me-2">Buscar</button>
+    </div>
+  </div>
+  <script>
+    document.getElementById('searchButton').onclick = function () {
+
+      let nombreFilter = document.getElementById('nombreFilter').value;
+      let precioMinFilter = document.getElementById('precioMinFilter').value;
+      let precioMaxFilter = document.getElementById('precioMaxFilter').value;
+      let sortOrder = document.getElementById('sortOrder').value;
+      let limit = document.getElementById('limit').value;
+
+
+      let query = "?nombre=" + nombreFilter +
+        "&precioMin=" + encodeURIComponent(precioMinFilter) +
+        "&precioMax=" + encodeURIComponent(precioMaxFilter) +
+        "&order=" + sortOrder +
+        "&limit=" + encodeURIComponent(limit);
+
+
+      window.location.href = '/productos' + query;
+    };
+
+  </script>
+  <script src="/public/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
