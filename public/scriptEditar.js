@@ -19,7 +19,7 @@ async function openModalWithProductData(productId) {
 	}
 	try {
 		const response = await fetch(`/productos/editar/${productId}`, {
-			method: "GET",
+			method: "GET", // !!! sin funcionar boton de editar !!!
 		});
 
 		const producto = await response.json();
@@ -29,20 +29,6 @@ async function openModalWithProductData(productId) {
 		document.getElementById("stock").value = producto.stock;
 		document.getElementById("descripcion").value = producto.descripcion;
 		document.getElementById("imagen").value = producto.imagen;
-
-		toastr.options = {
-			closeButton: false,
-			debug: false,
-			newestOnTop: true,
-			progressBar: false,
-			positionClass: "toast-top-center",
-			preventDuplicates: true,
-			onclick: null,
-			showDuration: "500",
-			hideDuration: "1000",
-			timeOut: "3000",
-			extendedTimeOut: "1000",
-		};
 
 		if (!response.ok) {
 			toastr.error(data.message || "Hubo un Error al Actualizar el Producto");
@@ -59,3 +45,16 @@ async function openModalWithProductData(productId) {
 		toastr.error("Hubo un Error al Cargar el Producto");
 	}
 }
+toastr.options = {
+	closeButton: false,
+	debug: false,
+	newestOnTop: true,
+	progressBar: false,
+	positionClass: "toast-top-center",
+	preventDuplicates: true,
+	onclick: null,
+	showDuration: "1000",
+	hideDuration: "1500",
+	timeOut: "3000",
+	extendedTimeOut: "1000",
+};

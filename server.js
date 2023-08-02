@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
 	res.status(200).render("partials/navigation");
 });
 
+app.get("/agregar", (req, res) => {
+	res.status(200).render("form.ejs");
+});
+
 //** PERMITE TRATAR LOS DATOS EN FORMATO JSON */
 app.use(express.json());
 

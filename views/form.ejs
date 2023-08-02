@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<%- include("./partials/header.ejs")%>
+
+<head>
+	<%- include("./partials/header.ejs")%>
 		<title>Gold Data Base</title>
-	</head>
-	<body class="bg-warning">
-		<%- include ('./partials/navigation.ejs')%>
+</head>
+
+<body class="bg-warning">
+	<%- include ('./partials/navigation.ejs')%>
+		<div class="container p-4">
+			<h2 class="text-center p-3">GOLD DB DATOS DEL PRODUCTO</h2>
+			<form class=" form-control mb-3 needs-validation" action="/productos/agregar" method="post" novalidate>
+				<div class="mb-3">
+					<label for="nombre" class="form-label"></label>
+					<input class="form-control" type="text" name="nombre" placeholder="Nombre del producto" required>
+				</div>
+				<div class="mb-3">
+					<label for="precio" class="form-label"></label>
+					<input class="form-control" type="number" name="precio" placeholder="Precio del producto" required>
+				</div>
+				<div class="mb-3">
+					<label for="stock" class="form-label"></label>
+					<input class="form-control" type="number" name="stock" placeholder="Stock del producto" required>
+				</div>
+				<div class="mb-3">
+					<label for="descripcion" class="form-label"></label>
+					<textarea class="form-control" type="text" name="descripcion" rows="5" placeholder="Descripcion del producto"
+						required></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="imagen" class="form-label"></label>
+					<input class="form-control" type="url" name="imagen" placeholder="www.example.com/image" required>
+				</div>
+				<div class="d-grid d-md-block text-center p-4">
+					<button class="btn btn-outline-primary m-2" type="submit">Agregar</button>
+					<button class="btn btn-outline-danger m-2" type="reset">Limpiar</button>
+				</div>
+			</form>
+		</div>
 		<footer><%- include ('./partials/footer.ejs')%></footer>
-	</body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		<script src="/public/scriptAgregar.js"></script>
+		<script>
+			(() => {
+				'use strict'
+				const forms = document.querySelectorAll('.needs-validation')
+				Array.from(forms).forEach(form => {
+					form.addEventListener('submit', event => {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+						}
+
+						form.classList.add('was-validated')
+					}, false)
+				})
+			})()
+		</script>
+</body>
+
 </html>
