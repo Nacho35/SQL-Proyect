@@ -6,18 +6,35 @@
 </head>
 
 <body>
-  <div class="mb-3">
-    <div class="text-center d-flex m-1">
-      <input class="form-control me-2" type="text" id="nombreFilter" placeholder="Nombre del Producto">
-      <input class="form-control me-2" type="number" id="precioMinFilter" placeholder="Precio Mínimo">
-      <input class="form-control me-2" type="number" id="precioMaxFilter" placeholder="Precio Máximo">
-      <select class="form-control me-2" id="sortOrder">
-        <option value="">Ordenar por</option>
-        <option value="asc">Ascendente</option>
-        <option value="desc">Descendente</option>
-      </select>
-      <input class="form-control me-2" type="number" id="limit" placeholder="Límite de Productos">
-      <button id="searchButton" class="btn btn-dark me-2">Buscar</button>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 mt-3 d-flex flex-wrap justify-content-around">
+        <div class="p-2 width-input">
+          <input class="form-control mb-2 mr-md-2 mb-md-0" type="text" id="nombreFilter"
+            placeholder="Nombre del Producto">
+        </div>
+        <div class="p-2 width-input">
+          <input class="form-control mb-2 mr-md-2 mb-md-0" type="number" id="precioMinFilter"
+            placeholder="Precio Mínimo">
+        </div>
+        <div class="p-2 width-input">
+          <input class="form-control mb-2 mr-md-2 mb-md-0" type="number" id="precioMaxFilter"
+            placeholder="Precio Máximo">
+        </div>
+        <div class="p-2 width-input">
+          <select class="form-control mb-2 mr-md-2 mb-md-0" id="sortOrder">
+            <option value="">Ordenar por</option>
+            <option value="asc">Ascendente</option>
+            <option value="desc">Descendente</option>
+          </select>
+        </div>
+        <div class="p-2 width-input">
+          <input class="form-control mb-2 mr-md-2 mb-md-0" type="number" id="limit" placeholder="Límite de Productos">
+        </div>
+      </div>
+      <div class="col-md-10 offset-md-1 d-flex justify-content-center mt-2 mb-3">
+        <button id="searchButton" class="btn btn-dark w-50">Buscar</button>
+      </div>
     </div>
   </div>
   <script>
