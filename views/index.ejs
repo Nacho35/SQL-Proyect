@@ -3,10 +3,10 @@
 
 <head>
 	<%- include("./partials/header.ejs")%>
-		<title>DATOS</title>
+		<title>Datos</title>
 </head>
 
-<body class="bg-warning">
+<body class="bg-success">
 	<%- include("./partials/navigation.ejs")%>
 		<div class="container">
 			<div class="container mt-2">
@@ -51,7 +51,7 @@
 											</td>
 											<td class="align-middle text-center">
 												<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-													<a class="btn btn-outline-primary" href="/productos/editar/<%= producto.id %>"
+													<a class="btn btn-outline-success" href="/productos/editar/<%= producto.id %>"
 														data-product-id="<%= producto.id %>" role="button">Editar</a>
 													<a class="btn btn-outline-danger" href="/productos/borrar/<%= producto.id %>"
 														data-product-id="<%= producto.id %>" role="button">Borrar</a>

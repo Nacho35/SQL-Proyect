@@ -1,3 +1,5 @@
+/** CLASES PERSONALIZADAS **/
+
 * {
   font-family: 'Lora', serif;
 }
@@ -9,4 +11,16 @@
 
 .width-input {
   width: 80%;
+}
+
+.logo-width {
+  width: 3rem;
+}
+
+.logo-nav {
+  width: 2rem;
+}
+
+.font-type {
+  font-weight: bold;
 }

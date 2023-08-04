@@ -3,13 +3,16 @@
 
 <head>
 	<%- include("./partials/header.ejs")%>
-		<title>Gold Data Base</title>
+		<title>Leaf Data Base</title>
 </head>
 
-<body class="bg-warning">
+<body class="bg-success">
 	<%- include ('./partials/navigation.ejs')%>
 		<div class="container p-4">
-			<h2 class="text-center p-3">GOLD DB DATOS DEL PRODUCTO</h2>
+			<h2 class="text-center p-3 text-capitalize text-dark"><img class="logo-width me-2"
+					src="/public/assets/leaf logo 1.svg" alt="logo"> leaf
+				db datos del producto
+			</h2>
 			<form class=" form-control mb-3 needs-validation" action="/productos/agregar" method="post" novalidate>
 				<div class="mb-3">
 					<label for="nombre" class="form-label"></label>
@@ -33,7 +36,7 @@
 					<input class="form-control" type="url" name="imagen" placeholder="www.example.com/image" required>
 				</div>
 				<div class="d-grid d-md-block text-center p-4">
-					<button class="btn btn-outline-primary m-2" type="submit">Agregar</button>
+					<button class="btn btn-outline-success m-2" type="submit">Agregar</button>
 					<button class="btn btn-outline-danger m-2" type="reset">Limpiar</button>
 				</div>
 			</form>
