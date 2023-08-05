@@ -19,7 +19,7 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 
 //** RENDERS */
 app.get("/", (req, res) => {
-	res.status(200).render("partials/navigation");
+	res.status(200).render("home.ejs");
 });
 
 app.get("/agregar", (req, res) => {
