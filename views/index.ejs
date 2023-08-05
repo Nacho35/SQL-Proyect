@@ -8,7 +8,7 @@
 
 <body class="bg-success">
 	<%- include("./partials/navigation.ejs")%>
-		<div class="container">
+		<div class="container pb-5">
 			<div class="container mt-2">
 				<%- include("./searchBar.ejs")%>
 					<div class="table-responsive">
@@ -69,12 +69,12 @@
 					</div>
 			</div>
 		</div>
+		<footer><%- include("./partials/footer.ejs")%></footer>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<script src="/public/lightbox2/dist/js/lightbox.js"></script>
 		<script src="/public/scriptBorrar.js"></script>
 		<script src="/public/scriptEditar.js"></script>
-		<%- include("./partials/footer.ejs")%>
 </body>
 
 </html>

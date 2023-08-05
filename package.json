@@ -12,7 +12,6 @@
 	"license": "ISC",
 	"dependencies": {
 		"bootstrap": "^5.3.0",
-		"bootstrap-icons": "^1.10.5",
 		"cors": "^2.8.5",
 		"dotenv": "^16.3.1",
 		"ejs": "^3.1.9",
