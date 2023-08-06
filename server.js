@@ -41,21 +41,15 @@ app.use(
 		extended: false,
 	})
 );
+
 //** RUTA PREDETERMINADA */
 app.use("/productos", api);
 
 //** FUNCION EN CASO DE QUE LA URL NO EXISTA */
-app.use(function (req, res, next) {
-	answer = {
-		error: true,
-		code: 404,
-		message: "URL No Encontrada",
-	};
-	res.status(404).send(answer);
+app.use((req, res) => {
+	res.status(404).render("404.ejs");
 });
 
 app.listen(process.env.PORT, () => {
-	console.log(
-		`Hola nachito servidor corriendo en el puerto ${process.env.PORT}`
-	);
+	console.log(`Hola dev servidor corriendo en el puerto ${process.env.PORT}`);
 });

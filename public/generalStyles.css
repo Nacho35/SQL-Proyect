@@ -48,3 +48,15 @@
   text-align: start;
   line-height: 2.5rem;
 }
+
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url("/public/assets/404.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}

@@ -10,10 +10,10 @@
 	<%- include ('./partials/navigation.ejs')%>
 		<div class="container p-4">
 			<h2 class="text-center p-3 text-capitalize text-dark"><img class="logo-width me-2"
-					src="/public/assets/leaf logo 1.svg" alt="logo"> leaf
-				db datos del producto
+					src="/public/assets/leaf logo 1.svg" alt="logo"> Leaf DB: Agregar Datos del Producto
 			</h2>
-			<form class=" form-control mb-3 needs-validation" action="/productos/agregar" method="post" novalidate>
+			<form class="form-control mb-3 needs-validation border border-0" action="/productos/agregar" method="post"
+				novalidate>
 				<div class="mb-3">
 					<label for="nombre" class="form-label"></label>
 					<input class="form-control" type="text" name="nombre" placeholder="Nombre del producto" required>
