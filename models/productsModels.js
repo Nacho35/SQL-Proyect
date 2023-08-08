@@ -112,9 +112,21 @@ const editaUnProducto = async (id, body) => {
 };
 
 const borraUnProducto = async (id) => {
+	const restablecerAutoIncremento = async () => {
+		let sql = "ALTER TABLE productos AUTO_INCREMENT = 1";
+		try {
+			await db.query(sql);
+		} catch (error) {
+			console.table(error);
+			throw new Error("Error al restablecer el auto incremento");
+		}
+	};
 	let sql = "DELETE FROM productos WHERE id = ?";
 	try {
 		const rows = await db.query(sql, [id]);
+
+		await restablecerAutoIncremento();
+
 		return rows[0];
 	} catch (error) {
 		console.table(error);
