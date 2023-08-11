@@ -50,7 +50,7 @@
 											</td>
 											<td class="align-middle text-center">
 												<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-													<a class="btn btn-outline-success" href="/productos/editar/<%= producto.id %>"
+													<a class="btn btn-outline-success edit-btn" href="/productos/editar/<%= producto.id %>"
 														data-product-id="<%= producto.id %>" role="button">Editar</a>
 													<a class="btn btn-outline-danger" href="/productos/borrar/<%= producto.id %>"
 														data-product-id="<%= producto.id %>" role="button">Borrar</a>
@@ -72,8 +72,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 		<script src="/public/lightbox2/dist/js/lightbox.js"></script>
+		<script src="/public/scriptModal.js"></script>
 		<script src="/public/scriptBorrar.js"></script>
-		<script src="/public/scriptEditar.js"></script>
+		<%- include("./modal.ejs")%>
 </body>
 
 </html>

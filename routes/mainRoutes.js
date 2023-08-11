@@ -10,7 +10,7 @@ api.get("/:id", productsControllers.productosById);
 
 api.post("/agregar", productsControllers.agregarProducto);
 
-api.get("/editar/:id", productsControllers.editaUnProducto);
+api.put("/editar/:id", productsControllers.editaUnProducto);
 
 api.get("/borrar/:id", productsControllers.borraUnProducto);
 

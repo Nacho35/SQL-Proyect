@@ -91,6 +91,11 @@ const agregarProducto = async (body) => {
 
 const editaUnProducto = async (id, body) => {
 	const { nombre, precio, stock, descripcion, imagen } = body;
+
+	if (!nombre || !precio || !stock || !descripcion || !imagen) {
+		throw new Error("Los campos no pueden estar vacios");
+	}
+
 	let sql = `UPDATE productos SET ? WHERE id='${id}'`;
 	try {
 		const [rows] = await db.query(sql, {
