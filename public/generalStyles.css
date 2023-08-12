@@ -71,3 +71,7 @@ body {
 footer {
   margin-top: auto;
 }
+
+#custom-text {
+  text-transform: capitalize;
+}

@@ -5,10 +5,8 @@
 	<%- include("./partials/header.ejs")%>
 </head>
 
-<!-- //** REVISAR EL ACTION DEL FORM ESTA MAL LA RUTA*/ -->
-
 <body>
-	<form class="container" action="/productos" method="put">
+	<form class="container">
 		<div class="modal" id="editModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -36,7 +34,7 @@
 					</div>
 					<div class="mb-3 d-flex justify-content-center">
 						<div class="me-3">
-							<button type="submit" class="btn btn-success">Aceptar</button>
+							<button type="submit" id="aceptar" class="btn btn-success">Aceptar</button>
 						</div>
 						<div class="me-3">
 							<button type="button" class="btn btn-danger" data-bs-dismiss="modal">
