@@ -1,4 +1,5 @@
 const db = require("../config/db");
+const bcrypt = require("bcrypt");
 
 const obtenerUsuarios = async () => {
 	let sql = "SELECT * FROM usuarios";
@@ -7,8 +8,30 @@ const obtenerUsuarios = async () => {
 		const [rows] = await db.query(sql);
 		return rows;
 	} catch (error) {
-		console.table(error);
+		console.log(error);
 		throw new Error("Error al obtener los usuarios de la base de datos");
+	}
+};
+
+const iniciarSesion = async (body) => {
+	const { user, password } = body;
+	let sql = "SELECT * FROM usuarios WHERE user = ?";
+	try {
+		const [rows] = await db.query(sql, [user]);
+		if (rows.length > 0) {
+			const userResult = rows[0];
+			const coincide = await bcrypt.compare(password, userResult.password);
+			if (coincide) {
+				return { message: "Inicio de sesión exitoso", user: userResult };
+			} else {
+				return { message: "Contraseña incorrecta", user: null };
+			}
+		} else {
+			return { message: "Usuario no encontrado", user: null };
+		}
+	} catch (error) {
+		console.log(error);
+		throw new Error("Error al iniciar sesión");
 	}
 };
 
@@ -27,9 +50,9 @@ const registrarUsuario = async (body) => {
 			return { message: "No se agrego la informacion", rows };
 		}
 	} catch (error) {
-		console.table(error);
+		console.log(error);
 		throw new Error("Error al insertar el usuario en la base de datos");
 	}
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario };
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion };

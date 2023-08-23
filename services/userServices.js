@@ -5,9 +5,14 @@ const obtenerUsuarios = async () => {
 	return users;
 };
 
+const iniciarSesion = async (body) => {
+	const login = await userModels.iniciarSesion(body);
+	return login;
+};
+
 const registrarUsuario = async (body) => {
 	const register = await userModels.registrarUsuario(body);
 	return register;
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario };
+module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion };
