@@ -4,7 +4,7 @@ const { DateTime } = require("luxon");
 const createToken = () => {
 	const payload = {
 		iat: DateTime.now().toMillis(),
-		exp: DateTime.now().plus({ minutes: 30 }),
+		exp: DateTime.now().plus({ minutes: 30 }).toMillis(),
 	};
 	return jwt.encode(payload, process.env.JWT_SECRET);
 };

@@ -32,13 +32,22 @@ const iniciarSesion = async (req, res) => {
 
 		const result = await userServices.iniciarSesion({ user, password });
 
-		if (result.usuario) {
-			const token = authService.createToken();
-			res.status(200).json({
-				message: "Inicio de sesión exitoso",
-				usuario: result.usuario,
-				token,
-			});
+		if (result.user.password) {
+			const token = authService.createToken({ user: result.user });
+
+			if (!token || token === "") {
+				return res.status(500).json({ message: "Error al generar el token" });
+			}
+
+			try {
+				res.status(200).json({
+					user: result.user,
+					message: "Inicio de sesión exitoso",
+					token,
+				});
+			} catch (error) {
+				res.status(401).json({ message: error.message });
+			}
 		} else {
 			res.status(401).json({ message: result.message });
 		}
@@ -75,7 +84,7 @@ const registrarUsuario = async (req, res) => {
 };
 
 const Hello = (req, res) => {
-	return res.status(200).send("Hola mundo, estas autenticado!");
+	return res.status(200).send("Bienvenido, Estas Autenticado!");
 };
 
 module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, Hello };

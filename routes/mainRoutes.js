@@ -5,6 +5,8 @@ const isAuth = require("../middlewares/isAuth");
 
 const api = express.Router();
 
+api.get("/hi", isAuth, userControllers.Hello);
+
 api.post("/login", userControllers.iniciarSesion);
 api.post("/register", userControllers.registrarUsuario);
 
@@ -14,7 +16,5 @@ api.get("/:id", productsControllers.productosById);
 api.post("/agregar", productsControllers.agregarProducto);
 api.put("/editar/:id", productsControllers.editaUnProducto);
 api.get("/borrar/:id", productsControllers.borraUnProducto);
-
-api.get("/hi", isAuth, userControllers.Hello);
 
 module.exports = api;
