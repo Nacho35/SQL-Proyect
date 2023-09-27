@@ -9,6 +9,7 @@ api.get("/hi", isAuth, userControllers.Hello);
 
 api.post("/login", userControllers.iniciarSesion);
 api.post("/register", userControllers.registrarUsuario);
+api.get("/delete/:id", userControllers.borrarUsuario);
 
 api.get("/", productsControllers.obtenerProductos);
 api.get("/users", userControllers.obtenerUsuarios);

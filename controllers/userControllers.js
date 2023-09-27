@@ -83,8 +83,33 @@ const registrarUsuario = async (req, res) => {
 	}
 };
 
+const borrarUsuario = async (req, res) => {
+	try {
+		const id = req.params.id;
+		const user = await userServices.borrarUsuario(id);
+		if (!user) {
+			res
+				.status(404)
+				.json({ message: "El usuario no se encontró para su eliminacion" });
+			return;
+		}
+		res.status(200).json({ message: "Usuario Eliminado" });
+	} catch (error) {
+		console.log(error);
+		res.status(500).json({
+			message: "Hubo un Error al Eliminar el Usuario",
+		});
+	}
+};
+
 const Hello = (req, res) => {
 	return res.status(200).send("Bienvenido, Estas Autenticado!");
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion, Hello };
+module.exports = {
+	obtenerUsuarios,
+	registrarUsuario,
+	iniciarSesion,
+	borrarUsuario,
+	Hello,
+};

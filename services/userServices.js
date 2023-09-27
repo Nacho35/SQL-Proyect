@@ -15,4 +15,14 @@ const registrarUsuario = async (body) => {
 	return register;
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion };
+const borrarUsuario = async (id) => {
+	const deleteUser = await userModels.borrarUsuario(id);
+	return deleteUser;
+};
+
+module.exports = {
+	obtenerUsuarios,
+	registrarUsuario,
+	iniciarSesion,
+	borrarUsuario,
+};

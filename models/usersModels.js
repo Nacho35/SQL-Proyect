@@ -55,4 +55,32 @@ const registrarUsuario = async (body) => {
 	}
 };
 
-module.exports = { obtenerUsuarios, registrarUsuario, iniciarSesion };
+const borrarUsuario = async (id) => {
+	const restablecerAutoIncremento = async () => {
+		let sql = "ALTER TABLE usuarios AUTO_INCREMENT = 1";
+		try {
+			await db.query(sql);
+		} catch (error) {
+			console.table(error);
+			throw new Error("Error al restablecer el auto incremento");
+		}
+	};
+	let sql = "DELETE FROM usuarios WHERE id = ?";
+	try {
+		const rows = await db.query(sql, [id]);
+
+		await restablecerAutoIncremento();
+
+		return rows[0];
+	} catch (error) {
+		console.table(error);
+		throw new Error("Error al borrar el usuario de la base de datos");
+	}
+};
+
+module.exports = {
+	obtenerUsuarios,
+	registrarUsuario,
+	iniciarSesion,
+	borrarUsuario,
+};
