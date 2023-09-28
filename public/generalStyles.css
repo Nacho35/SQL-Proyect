@@ -75,3 +75,32 @@ footer {
 #custom-text {
   text-transform: capitalize;
 }
+
+.form-product {
+  @media (min-width: 1200px) {
+    width: 75%;
+  }
+}
+
+.search-width {
+  @media (min-width: 1200px) {
+    width: 50%;
+  }
+}
+
+.inputs-width {
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 30%;
+  }
+}
+
+.wallpaper {
+  background-image: url('./assets/wallpaper-login.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

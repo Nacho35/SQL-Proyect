@@ -9,13 +9,13 @@ api.get("/hi", isAuth, userControllers.Hello);
 
 api.post("/login", userControllers.iniciarSesion);
 api.post("/register", userControllers.registrarUsuario);
-api.get("/delete/:id", userControllers.borrarUsuario);
+api.get("/delete/:id", isAuth, userControllers.borrarUsuario);
 
-api.get("/", productsControllers.obtenerProductos);
-api.get("/users", userControllers.obtenerUsuarios);
-api.get("/:id", productsControllers.productosById);
-api.post("/agregar", productsControllers.agregarProducto);
-api.put("/editar/:id", productsControllers.editaUnProducto);
-api.get("/borrar/:id", productsControllers.borraUnProducto);
+api.get("/", isAuth, productsControllers.obtenerProductos);
+api.get("/users", isAuth, userControllers.obtenerUsuarios);
+api.get("/:id", isAuth, productsControllers.productosById);
+api.post("/agregar", isAuth, productsControllers.agregarProducto);
+api.put("/editar/:id", isAuth, productsControllers.editaUnProducto);
+api.get("/borrar/:id", isAuth, productsControllers.borraUnProducto);
 
 module.exports = api;
